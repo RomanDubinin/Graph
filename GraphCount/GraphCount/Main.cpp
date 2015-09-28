@@ -17,7 +17,7 @@ int n, m, i, j, v, u;
 char r;
 
 //главная функция
-void main(int argc, char * argv[])
+int main(int argc, char * argv[])
 {
 	setlocale(LC_ALL, "Rus");
 
@@ -93,4 +93,5 @@ void main(int argc, char * argv[])
 	cout << mActually << endl;
 	cout << oneDirectedNum << endl;
 	system("pause>>void");
+	return 0;
 }
