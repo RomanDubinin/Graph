@@ -11,6 +11,8 @@ find_package(Boost
 
 set(SOURCE_FILES
     GraphCount/GraphCount/Graph.cpp
-    GraphCount/GraphCount/Main.cpp)
+    GraphCount/GraphCount/Main.cpp
+    GraphCount/GraphCount/Algorithm.cpp
+    GraphCount/GraphCount/Algorithm.h)
 
 add_executable(Graph ${SOURCE_FILES})
