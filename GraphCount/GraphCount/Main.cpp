@@ -19,7 +19,7 @@ int main(int argc, char * argv[])
 
     if (argc < 2) {
         cerr << "Not enough args" << endl;
-        cerr << "  Usage: " << argv[0] << "graph_to_read_from.gr" << endl;
+        cerr << "  Usage: " << argv[0] << " graph_to_read_from.gr" << endl;
         exit(WRONG_ARGS);
     }
 
@@ -58,6 +58,6 @@ int main(int argc, char * argv[])
 
     cout << mActually(graph) << endl;
     cout << oneDirectedNum(graph) << endl;
-    system("pause>>void");
+    cin.get();
     return 0;
 }
