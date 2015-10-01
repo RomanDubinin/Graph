@@ -35,11 +35,11 @@ int main(int argc, char * argv[])
         exit(WRONG_FILE_FORMAT);
     }
 
-    int n = std::stoi(splitted[2]);
-    int m = std::stoi(splitted[3]);
+    long n = std::stol(splitted[2]);
+    long m = std::stol(splitted[3]);
     Graph graph = Graph(n, m);
 
-    int k = 0;
+    long k = 0;
     while (!fin.eof()) // checks if file is on it's end, this would be false only after failed read
     {
         if (getline(fin, line)) // returns count of bytes was read, returns 0 on when end of file reached

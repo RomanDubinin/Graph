@@ -1,14 +1,14 @@
 #include "Algorithm.h"
 
-int mActually(Graph graph) {
+long mActually(Graph graph) {
 
-    int n = graph.vNumber, k = 0;
+    long n = graph.vertexCount, k = 0;
 
-    int mActually = 0;
-    int neighbour = 0;
-    for (int i = 0; i<n + 1; i++)
+    long mActually = 0;
+    long neighbour = 0;
+    for (long i = 0; i<n + 1; i++)
     {
-        int j = graph.head[i];
+        long j = graph.head[i];
         while (j < graph.head[i+1] && j != 0)
         {
             mActually++;
@@ -23,16 +23,16 @@ int mActually(Graph graph) {
     return mActually;
 }
 
-int oneDirectedNum(Graph graph) {
+long oneDirectedNum(Graph graph) {
 
-    int n = graph.vNumber, k = 0;
+    long n = graph.vertexCount, k = 0;
 
-    int oneDirectedNum = 0;
-    int neighbour = 0;
+    long oneDirectedNum = 0;
+    long neighbour = 0;
     bool isDoubleDirection;
-    for (int i = 0; i< n + 1; i++)
+    for (long i = 0; i< n + 1; i++)
     {
-        int j = graph.head[i];
+        long j = graph.head[i];
         while (j < graph.head[i+1] && j != 0)
         {
             neighbour = graph.tails[j];
