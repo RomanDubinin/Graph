@@ -1,6 +1,12 @@
 language: cpp
 
+script: cmake . && make
+
 os:
   - linux
   - osx
   - windows
+
+notifications:
+  slack: paths2015:FypS2DzZO1DUg83AoDu9RAWq
+
