@@ -1,0 +1,22 @@
+language: cpp
+
+compiler:
+  - clang
+  - gcc
+
+script: cmake . && make
+
+os:
+  - linux
+  - windows
+
+notifications:
+  slack: paths2015:FypS2DzZO1DUg83AoDu9RAWq
+
+sudo: false
+
+addons:
+  apt:
+    packages:
+    - cmake
+    - boost

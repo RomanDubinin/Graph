@@ -1,9 +1,6 @@
-﻿//#include "stdafx.h"
-#include "Graph.cpp"
-#include <iostream>
+﻿#include "Algorithm.h"
 #include <fstream>
 #include <vector>
-#include <string>
 #include <boost/algorithm/string.hpp>
 
 #if defined(_MSC_VER) && _MSC_VER >= 1400 
@@ -13,84 +10,54 @@
 
 using namespace std;
 
-int n, m, i, j, v, u;
-char r;
+const static int WRONG_ARGS = 1;
+const static int WRONG_FILE_FORMAT = 2;
 
-//главная функция
-void main(int argc, char * argv[])
+int main(int argc, char * argv[])
 {
-	setlocale(LC_ALL, "Rus");
+    setlocale(LC_ALL, "Rus");
 
-	//cout << argv[1];
-	ifstream fin(argv[1]);
-	string line;
-	std::vector<std::string> splitted;
+    if (argc < 2) {
+        cerr << "Not enough args" << endl;
+        cerr << "  Usage: " << argv[0] << " graph_to_read_from.gr" << endl;
+        exit(WRONG_ARGS);
+    }
 
-	getline(fin, line);
-	boost::split(splitted, line, boost::is_any_of("\t "));
-	n = std::stoi(splitted[2]);
-	m = std::stoi(splitted[3]);
-	Graph graph = Graph(n, m);
+    ifstream fin(argv[1]);
+    string line;
+    std::vector<std::string> splitted;
 
-	int k = 0;
-	while (!fin.eof()) // checks if file is on it's end, this would be false only after failed read
-	{
-		if (getline(fin, line)) // returns count of bytes was read, returns 0 on when end of file reached
-		{
-			//.clear();
-			boost::split(splitted, line, boost::is_any_of("\t "));
-			k++;
+    getline(fin, line); // считываем первую строку
+    boost::split(splitted, line, boost::is_any_of("\t ")); // TODO better way to parse this(why not regex?)
 
-			if (splitted[0].compare("a") == 0)
-				graph.Add(std::stoi(splitted[2]), std::stoi(splitted[1]));
-			else
-				continue;
-		}
-	}
-	graph.EndInitialize();
-	cout << "added\n";
+    if (splitted.size() < 3) {
+        cerr << "Wrong file" << endl;
+        exit(WRONG_FILE_FORMAT);
+    }
 
+    long n = std::stol(splitted[2]);
+    long m = std::stol(splitted[3]);
+    Graph graph = Graph(n, m);
 
-	int mActually = 0;
-	int oneDirectedNum = 0;
-	int neighbour = 0;
-	bool isDoubleDirection = false;
-	for (i = 0; i<n + 1; i++)
-	{
-		j = graph.head[i];
-		if (i) 
-			cout << i << "->";
-		while (j < graph.head[i+1] && j != 0)
-		{
-			mActually++;
+    long k = 0;
+    while (!fin.eof()) // checks if file is on it's end, this would be false only after failed read
+    {
+        if (getline(fin, line)) // returns count of bytes was read, returns 0 on when end of file reached
+        {
+            //.clear(); // заполняем его
+            boost::split(splitted, line, boost::is_any_of("\t "));
+            k++;
 
-			if (j == graph.head[i + 1] - 1)
-				cout << graph.tails[j];
-			else 
-				cout << graph.tails[j] << ", ";
+            if (splitted[0].compare("a") == 0)
+                graph.Add(std::stoi(splitted[2]), std::stoi(splitted[1]));
+            else continue;
+        }
+    }
+    graph.EndInitialize();
+    cout << "added\n";
 
-			neighbour = graph.tails[j];
-			isDoubleDirection = false;
-			for (int k = graph.head[neighbour]; k < graph.head[neighbour + 1]; k++)
-			{
-				if (k == i)
-				{
-					isDoubleDirection = true;
-					break;
-				}
-			}
-			if (!isDoubleDirection)
-			{
-				oneDirectedNum++;
-			}
-				
-
-			j++;
-			
-		}
-		cout << endl;
-	}
-	cout << mActually << endl;
-	cout << oneDirectedNum << endl;
-	system("pause>>void");
+    cout << mActually(graph) << endl;
+    cout << oneDirectedNum(graph) << endl;
+    cin.get();
+    return 0;
 }
