@@ -39,7 +39,7 @@ long oneDirectedNum(Graph graph) {
             isDoubleDirection = false;
             for (k = graph.head[neighbour]; k < graph.head[neighbour + 1]; k++)
             {
-                if (k == i)
+                if (graph.tails[k] == i)
                 {
                     isDoubleDirection = true;
                     break;
