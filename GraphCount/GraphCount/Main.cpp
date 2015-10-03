@@ -59,10 +59,23 @@ int main(int argc, char * argv[])
     cout << "added\n";
 
     cout << mActually(graph) << endl;
+
+    std::clock_t start;
+    start = std::clock();
+
     cout << oneDirectedNum(graph) << endl;
+
+    double duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    cout << "seconds to count one directed" << duration << endl;
+
+    start = std::clock();
 
     long* inPowers = GetInPowers(graph);
     long* outPowers = GetOutPowers(graph);
+
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    cout << "seconds to count in and out powers" << duration << endl;
+
 
     for (int i = 0; i < graph.vertexCount + 1; ++i)
     {
@@ -75,6 +88,8 @@ int main(int argc, char * argv[])
     {
         //cout << outPowers[i] << " ";
     }
+
+    start = std::clock();
 
     long sum = 0;
     long average = 0;
@@ -92,7 +107,10 @@ int main(int argc, char * argv[])
     }
     average = sum / graph.vertexCount;
 
-    cout <<"metrics: average " << average << " min " << min << " max " << max;
+    duration = ( std::clock() - start ) / (double) CLOCKS_PER_SEC;
+    cout << "seconds to count statistics" << duration << endl;
+
+    cout <<"statistics: average " << average << " min " << min << " max " << max;
 
     //cin.get();
     return 0;
