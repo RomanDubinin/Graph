@@ -40,3 +40,5 @@ bld/
 [Oo]bj/
 *.sdf
 *.opensdf
+
+.idea/*
