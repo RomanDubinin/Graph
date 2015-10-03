@@ -79,7 +79,7 @@ int main(int argc, char * argv[])
     long sum = 0;
     long average = 0;
     long max = 0;
-    long min = 9999 99;
+    long min = graph.vertexCount;
     for (int i = 1; i < graph.vertexCount + 1; ++i)
     {
         if(inPowers[i] + outPowers[i] < min)
@@ -92,7 +92,7 @@ int main(int argc, char * argv[])
     }
     average = sum / graph.vertexCount;
 
-    cout << average << " " << min << " " << max;
+    cout <<"metrics: average " << average << " min " << min << " max " << max;
 
     //cin.get();
     return 0;
