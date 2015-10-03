@@ -54,3 +54,21 @@ long oneDirectedNum(Graph graph) {
     return oneDirectedNum;
 
 }
+
+long* GetOutPowers(Graph graph)
+{
+    long* outPowers = new long[graph.vertexCount];
+    for (int i = 0; i < graph.vertexCount; i++)
+    {
+        outPowers[i] = 0;
+    }
+
+    long outVertex;
+    for (int i = 0; i < graph.vertexCount; ++i)
+    {
+        outVertex = graph.tails[i];
+        outPowers[outVertex] += 1;
+    }
+
+    return outPowers;
+}

@@ -2,6 +2,7 @@
 #include <fstream>
 #include <vector>
 #include <boost/algorithm/string.hpp>
+#include <stdlib.h>
 
 #if defined(_MSC_VER) && _MSC_VER >= 1400 
 #pragma warning(push) 
