@@ -3,6 +3,7 @@
 #include <vector>
 #include <boost/algorithm/string.hpp>
 #include <stdlib.h>
+#include <string>
 
 #if defined(_MSC_VER) && _MSC_VER >= 1400 
 #pragma warning(push) 
@@ -36,8 +37,8 @@ int main(int argc, char * argv[])
         exit(WRONG_FILE_FORMAT);
     }
 
-    long n = std::stol(splitted[2]);
-    long m = std::stol(splitted[3]);
+    long n = std::atoi(splitted[2].c_str());
+    long m = std::atoi(splitted[3].c_str());
     Graph graph = Graph(n, m);
 
     long k = 0;
@@ -50,7 +51,7 @@ int main(int argc, char * argv[])
             k++;
 
             if (splitted[0].compare("a") == 0)
-                graph.Add(std::stoi(splitted[2]), std::stoi(splitted[1]));
+                graph.Add(std::atoi(splitted[2].c_str()), std::atoi(splitted[1].c_str()));
             else continue;
         }
     }

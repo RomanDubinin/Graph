@@ -8,7 +8,7 @@ find_package(Boost
         REQUIRED                    # Fail with error if Boost is not found
         # [COMPONENTS <libs>...]    # Boost libraries by their canonical name
 )
-
+include_directories("C:\\Libs\\boost_1_44_0")
 set(SOURCE_FILES
     GraphCount/GraphCount/Graph.cpp
     GraphCount/GraphCount/Main.cpp
