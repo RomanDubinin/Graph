@@ -55,20 +55,36 @@ long oneDirectedNum(Graph graph) {
 
 }
 
-long* GetOutPowers(Graph graph)
+long* GetInPowers(Graph graph)
 {
-    long* outPowers = new long[graph.vertexCount];
-    for (int i = 0; i < graph.vertexCount; i++)
+    long* outPowers = new long[graph.vertexCount + 1];
+    for (int i = 0; i < graph.vertexCount + 1; i++)
     {
         outPowers[i] = 0;
     }
 
     long outVertex;
-    for (int i = 0; i < graph.vertexCount; ++i)
+    for (int i = 1; i < graph.edgeCount; i++)
     {
         outVertex = graph.tails[i];
         outPowers[outVertex] += 1;
     }
 
     return outPowers;
+}
+
+long* GetOutPowers(Graph graph)
+{
+    long* inPowers = new long[graph.vertexCount + 1];
+    for (int i = 0; i < graph.vertexCount + 1; i++)
+    {
+        inPowers[i] = 0;
+    }
+
+    for (int i = 1; i < graph.vertexCount + 1; i++)
+    {
+        inPowers[i] = graph.head[i+1] - graph.head[i];
+    }
+
+    return inPowers;
 }

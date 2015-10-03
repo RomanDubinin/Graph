@@ -60,6 +60,40 @@ int main(int argc, char * argv[])
 
     cout << mActually(graph) << endl;
     cout << oneDirectedNum(graph) << endl;
-    cin.get();
+
+    long* inPowers = GetInPowers(graph);
+    long* outPowers = GetOutPowers(graph);
+
+    for (int i = 0; i < graph.vertexCount + 1; ++i)
+    {
+        //cout << inPowers[i] << " ";
+    }
+
+    cout << "\n";
+
+    for (int i = 0; i < graph.vertexCount + 1; ++i)
+    {
+        //cout << outPowers[i] << " ";
+    }
+
+    long sum = 0;
+    long average = 0;
+    long max = 0;
+    long min = 9999 99;
+    for (int i = 1; i < graph.vertexCount + 1; ++i)
+    {
+        if(inPowers[i] + outPowers[i] < min)
+            min = inPowers[i] + outPowers[i];
+
+        if(inPowers[i] + outPowers[i] > max)
+            max = inPowers[i] + outPowers[i];
+
+        sum += inPowers[i] + outPowers[i];
+    }
+    average = sum / graph.vertexCount;
+
+    cout << average << " " << min << " " << max;
+
+    //cin.get();
     return 0;
 }
